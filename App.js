@@ -6,12 +6,12 @@ import Wrapper from './src/navigation/wrapper';
 import {NavigationContainer} from '@react-navigation/native';
 
 const App = props => {
-  useEffect(() => {
-    setTimeout(() => {
-      RNBootSplash.hide({fade: true});
-      console.log('Bootsplash has been hidden successfully');
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     RNBootSplash.hide({fade: true});
+  //     console.log('Bootsplash has been hidden successfully');
+  //   }, 3000);
+  // }, []);
   return (
     <NavigationContainer>
       <Wrapper {...props} />
