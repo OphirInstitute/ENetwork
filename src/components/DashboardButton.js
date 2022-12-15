@@ -16,7 +16,7 @@ const DashboardButton = ({source, title}) => {
         }}>
         <Image source={source} />
       </View>
-      <Text>{title}</Text>
+      <Text style={{fontSize: 16, marginTop: 6}}>{title}</Text>
     </View>
   );
 };
