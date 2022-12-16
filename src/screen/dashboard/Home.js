@@ -102,23 +102,26 @@ const Home = () => {
           backgroundColor: COLORS.gray2,
           paddingVertical: 10,
           flexDirection: 'row',
-          // justifyContent: 'space-between',
         }}>
-        {/* <ListTopBar /> */}
-        <TopBar
+        <ListTopBar />
+        {/* <TopBar
           title={'Trending'}
-          addBottomColor={activeTab === 'Trending' ? 'red' : ''}
+          // addBottomColor={activeTab === 'Trending' ? 'red' : ''}
           handlePress={item => {
-            setActiveTab(item);
+            if (activeTab !== item) {
+              setActiveTab(item);
+            }
           }}
           style={{
             borderBottomWidth: activeTab === 'Trending' && 2,
             borderBottomColor: activeTab === 'Trending' && COLORS.primary,
             width: activeTab === 'Trending' && 40,
             padding: 2,
+            backgroundColor: 'yellow',
           }}
-        />
-        <TopBar
+        /> */}
+
+        {/* <TopBar
           title={'Portfolio'}
           handlePress={item => {
             setActiveTab(item);
@@ -129,8 +132,8 @@ const Home = () => {
             width: activeTab === 'Portfolio' && 40,
             padding: 2,
           }}
-        />
-        <TopBar
+        /> */}
+        {/* <TopBar
           title={'Hot'}
           handlePress={item => {
             setActiveTab(item);
@@ -141,8 +144,8 @@ const Home = () => {
             width: activeTab === 'Hot' && 10,
             padding: 2,
           }}
-        />
-        <TopBar
+        /> */}
+        {/* <TopBar
           title={'Losers'}
           handlePress={item => {
             setActiveTab(item);
@@ -153,7 +156,7 @@ const Home = () => {
             width: activeTab === 'Losers' && 30,
             padding: 2,
           }}
-        />
+        /> */}
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <CryptoRow coin={'BTC'} img={bitcoin} perecentage={'5.76%'} />

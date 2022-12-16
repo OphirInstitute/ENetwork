@@ -7,10 +7,10 @@ const Container = ({children}) => {
   return (
     <View
       style={{
-        padding: 10,
+        padding: 15,
         flex: 1,
         marginTop: StatusBarHeight,
-        backgroundColor: COLORS.white,
+        // backgroundColor: COLORS.black,
       }}>
       {children}
     </View>

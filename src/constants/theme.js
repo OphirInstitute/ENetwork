@@ -30,6 +30,7 @@ export const SIZES = {
 
 export const COLORS = {
   primary: '#5D00F4',
+  secondary: '#01EAD4',
   lightGreen: 'rgba(114, 225, 172, 1)',
   green: '#289E65',
   white: '#FFFFFF',

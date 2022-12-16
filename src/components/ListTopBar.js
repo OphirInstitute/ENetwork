@@ -8,12 +8,13 @@ const ListTopBar = () => {
     {id: '2', title: 'Portfolio'},
     {id: '3', title: 'Hot'},
     {id: '4', title: 'Gainers'},
-    {id: '4', title: 'Losers'},
+    {id: '5', title: 'Losers'},
   ];
   return (
     <View style={{flexDirection: 'row'}}>
       {bars.map(item => (
         <TopBar
+          key={item.id}
           title={item.title}
           handlePress={item => {
             console.log(
