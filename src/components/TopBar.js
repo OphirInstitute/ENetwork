@@ -11,7 +11,7 @@ const TopBar = ({title, handlePress, style}) => {
           flexDirection: 'row',
           marginRight: 10,
         }}>
-        <View style={{justifyContet: 'center', alignItems: 'center'}}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontWeight: '600'}}>{title}</Text>
           <View style={style} />
         </View>

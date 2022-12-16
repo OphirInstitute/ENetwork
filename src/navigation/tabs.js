@@ -10,6 +10,7 @@ import {COLORS} from '../constants/theme';
 import MarketStack from './MarketStack';
 import Enet from '../screen/enet/Enet';
 import EnetStack from './EnetStack';
+import WalletStack from './WalletStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -148,7 +149,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Wallet"
-        component={HomeStack}
+        component={WalletStack}
         options={{
           unmountOnBlur: true,
           tabBarIcon: ({focused}) => (
