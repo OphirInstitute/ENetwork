@@ -6,7 +6,7 @@ import Auth from './Auth';
 const {Navigator, Screen} = createStackNavigator();
 
 const Wrapper = props => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   return (
     <Navigator {...props} headerMode="none">
       {loggedIn ? (
