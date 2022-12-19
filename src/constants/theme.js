@@ -40,6 +40,7 @@ export const COLORS = {
   gray3: '#808080',
   gray4: '#50555C', //text
   gray5: '#292D32',
+  gray6: '#ABABAB',
   black: '#000',
   red: 'red',
   darkBlue: 'rgba(0, 9, 44,0.7)',
