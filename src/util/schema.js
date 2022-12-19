@@ -68,6 +68,30 @@ const sendPayIDSchema = yup.object().shape({
   // ),
 });
 
+const addTokenSchema = yup.object().shape({
+  addTokenVerify: yup.boolean(),
+  address: yup.string().when('addTokenVerify', {
+    is: true,
+    then: yup.string().required('Address is required'),
+    // .length(11, 'Phone Number must be 11 digits'),
+  }),
+  name: yup.string().required('Name is required'),
+  // .matches(
+  //   passwordRegx,
+  //   'Password should contain 8 characters with uppercase and lowercase letters, special character  and  numbers',
+  // ),
+  symbols: yup.string().required('Symbol is required'),
+  // .matches(
+  //   passwordRegx,
+  //   'Password should contain 8 characters with uppercase and lowercase letters, special character  and  numbers',
+  // ),
+  decimals: yup.string().required('Decimals is required'),
+  // .matches(
+  //   passwordRegx,
+  //   'Password should contain 8 characters with uppercase and lowercase letters, special character  and  numbers',
+  // ),
+});
+
 const withdrawalSchema = yup.object().shape({
   address: yup
     .string()
@@ -176,6 +200,7 @@ export {
   sendPhoneSchema,
   sendWalletAddSchema,
   sendPayIDSchema,
+  addTokenSchema,
   otpLoginVerifySchema,
   otpPasswordVerifySchema,
   registerSchema,

@@ -3,14 +3,21 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {useNavigation} from '@react-navigation/native';
 import Container from '../../components/container';
 import {COLORS, SIZES} from '../../constants/theme';
 import eye from '../../assets/images/eye.png';
+import ov1 from '../../assets/images/ov-1.png';
+import ov2 from '../../assets/images/ov-2.png';
+import ov3 from '../../assets/images/ov-3.png';
+import ov4 from '../../assets/images/ov-4.png';
+import eyeB from '../../assets/images/eyeB.png';
 import send from '../../assets/images/send-2.png';
 import deposit from '../../assets/images/receive.png';
 import withdraw from '../../assets/images/withdraw.png';
@@ -27,16 +34,25 @@ import TokensRow from '../../components/TokensRow';
 const Tab = createMaterialTopTabNavigator();
 
 const Wallet = () => {
+  const navigation = useNavigation();
+
+  //
   function renderTabs() {
     return (
       <Tab.Navigator
-        style={{backgroundColor: COLORS.white}}
+        // style={{backgroundColor: COLORS.white}}
         tabBarOptions={{
-          activeTintColor: COLORS.primary,
+          activeTintColor: COLORS.white,
           inactiveTintColor: COLORS.gray3,
+          style: {
+            backgroundColor: COLORS.black,
+            // borderRadius: 10,
+            // marginHorizontal: 20,
+            // height: 35,
+          },
           labelStyle: {
             fontWeight: '500',
-            fontSize: 16,
+            fontSize: 14,
             fontStyle: 'normal',
             textTransform: 'capitalize',
           },
@@ -47,7 +63,7 @@ const Wallet = () => {
           },
           indicatorContainerStyle: {
             borderBottomWidth: 1,
-            borderBottomColor: COLORS.gray,
+            borderBottomColor: COLORS.gray5,
             borderStyle: 'solid',
           },
         }}
@@ -73,7 +89,9 @@ const Wallet = () => {
         }}>
         <Tab.Screen name="Overview" component={OverviewTab} />
         <Tab.Screen name="Crypto" component={CryptoTab} />
+        <Tab.Screen name="NFT" component={NftTab} />
         <Tab.Screen name="Earn" component={EarnTab} />
+        <Tab.Screen name="Card" component={CardTab} />
       </Tab.Navigator>
     );
   }
@@ -85,7 +103,7 @@ const Wallet = () => {
         // padding: 10,
         flex: 1,
         marginTop: StatusBarHeight,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       {/* <SafeAreaView>
         <View
@@ -118,7 +136,7 @@ export const OverviewTab = () => {
         paddingTop: 40,
         padding: 25,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <View
         style={{
@@ -135,15 +153,16 @@ export const OverviewTab = () => {
           }}>
           <Text
             style={{
-              fontSize: 10,
+              fontSize: 11,
               letterSpacing: 10,
-              fontWeight: '400',
+              fontWeight: '600',
+              color: COLORS.gray2,
             }}>
             TOTAL ASSET
           </Text>
           <TouchableOpacity>
             <Image
-              source={eye}
+              source={eyeB}
               style={{
                 alignSelf: 'center',
                 marginLeft: 10,
@@ -156,14 +175,17 @@ export const OverviewTab = () => {
       </View>
       <View style={{paddingVertical: 8, flexDirection: 'row'}}>
         <View>
-          <Text style={{fontSize: 22, fontWeight: '600'}}> $9,438,600.00</Text>
+          <Text style={{fontSize: 22, fontWeight: '600', color: COLORS.white}}>
+            {' '}
+            $9,438,600.00
+          </Text>
         </View>
         <View
           style={{
             alignContent: 'center',
             justifyContent: 'center',
           }}>
-          <Text style={{marginTop: 10}}> USD</Text>
+          <Text style={{marginTop: 10, color: COLORS.gray2}}> USD</Text>
         </View>
       </View>
       <View
@@ -185,7 +207,11 @@ export const OverviewTab = () => {
           marginTop: 40,
           alignItems: 'center',
         }}>
-        <View
+        <Image source={ov1} style={{marginBottom: 5}} />
+        <Image source={ov2} style={{marginBottom: 5}} />
+        <Image source={ov3} style={{marginBottom: 5}} />
+        <Image source={ov4} style={{marginBottom: 5}} />
+        {/* <View
           style={{
             flexDirection: 'row',
             backgroundColor: '#21E985',
@@ -226,8 +252,8 @@ export const OverviewTab = () => {
               USD
             </Text>
           </View>
-        </View>
-        <View
+        </View> */}
+        {/* <View
           style={{
             marginBottom: 5,
             flexDirection: 'row',
@@ -268,8 +294,8 @@ export const OverviewTab = () => {
               USD
             </Text>
           </View>
-        </View>
-        <View
+        </View> */}
+        {/* <View
           style={{
             marginBottom: 5,
             flexDirection: 'row',
@@ -300,18 +326,9 @@ export const OverviewTab = () => {
               }}>
               Coming soon
             </Text>
-            {/* <Text
-              style={{
-                color: COLORS.gray3,
-                fontSize: 15,
-                fontWeight: '500',
-                marginLeft: 5,
-              }}>
-              USD
-            </Text> */}
           </View>
-        </View>
-        <View
+        </View> */}
+        {/* <View
           style={{
             marginBottom: 5,
             flexDirection: 'row',
@@ -342,23 +359,30 @@ export const OverviewTab = () => {
               }}>
               Coming soon
             </Text>
-            {/* <Text
-              style={{
-                color: COLORS.gray3,
-                fontSize: 15,
-                fontWeight: '500',
-                marginLeft: 5,
-              }}>
-              USD
-            </Text> */}
           </View>
-        </View>
+        </View> */}
       </View>
     </View>
   );
 };
 
-export const CryptoTab = () => {
+export const CryptoTab = ({navigation}) => {
+  const onPress = () => {
+    navigation.navigate('Send');
+  };
+  const handleWithdrawal = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  const handleDeposit = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  const handleBuy = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  //
   return (
     <View
       style={{
@@ -369,7 +393,7 @@ export const CryptoTab = () => {
         paddingTop: 40,
         padding: 25,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <View
         style={{
@@ -389,12 +413,13 @@ export const CryptoTab = () => {
               fontSize: 12,
               letterSpacing: 5.5,
               fontWeight: '400',
+              color: COLORS.gray2,
             }}>
             AVAILABLE BALANCE
           </Text>
           <TouchableOpacity>
             <Image
-              source={eye}
+              source={eyeB}
               style={{
                 alignSelf: 'center',
                 marginLeft: 10,
@@ -407,14 +432,17 @@ export const CryptoTab = () => {
       </View>
       <View style={{paddingVertical: 8, flexDirection: 'row', marginLeft: -5}}>
         <View>
-          <Text style={{fontSize: 22, fontWeight: '600'}}> $9,438,600.00</Text>
+          <Text style={{fontSize: 22, fontWeight: '600', color: COLORS.white}}>
+            {' '}
+            $9,438,600.00
+          </Text>
         </View>
         <View
           style={{
             alignContent: 'center',
             justifyContent: 'center',
           }}>
-          <Text style={{marginTop: 10}}> USD</Text>
+          <Text style={{marginTop: 10, color: COLORS.gray2}}> USD</Text>
         </View>
       </View>
       <View
@@ -423,7 +451,12 @@ export const CryptoTab = () => {
           marginTop: 20,
           justifyContent: 'space-between',
         }}>
-        <DashboardButton title={'Send'} source={send} />
+        <DashboardButton
+          title={'Send'}
+          source={send}
+          press={onPress}
+          show={true}
+        />
         <DashboardButton title={'Deposit'} source={deposit} />
         <DashboardButton title={'Withdraw'} source={withdraw} />
         <DashboardButton title={'Buy'} source={buy} />
@@ -431,7 +464,8 @@ export const CryptoTab = () => {
       <View
         style={{
           flex: 1,
-          backgroundColor: COLORS.gray2,
+          // backgroundColor: COLORS.gray2,
+          backgroundColor: COLORS.darkBlues,
           borderTopLeftRadius: 26,
           borderTopRightRadius: 26,
           position: 'absolute',
@@ -484,6 +518,149 @@ export const CryptoTab = () => {
   );
 };
 
+export const NftTab = ({navigation}) => {
+  const onPress = () => {
+    navigation.navigate('Send');
+  };
+  const handleWithdrawal = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  const handleDeposit = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  const handleBuy = () => {
+    // navigation.navigate('Send');
+    console.log('press');
+  };
+  //
+  return (
+    <View
+      style={{
+        // borderColor: COLORS.gray,
+        // borderWidth: 2,
+        // borderRadius: 15,
+        flex: 1,
+        paddingTop: 40,
+        padding: 25,
+        height: 170,
+        backgroundColor: COLORS.black,
+      }}>
+      <View
+        style={{
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          //
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            // backgroundColor: 'red',
+            alignItems: 'center',
+            // flex: 1,
+          }}>
+          <Text
+            style={{
+              fontSize: 12,
+              letterSpacing: 5.5,
+              fontWeight: '400',
+              color: COLORS.gray2,
+            }}>
+            AVAILABLE BALANCE
+          </Text>
+          <TouchableOpacity>
+            <Image
+              source={eyeB}
+              style={{
+                alignSelf: 'center',
+                marginLeft: 10,
+                height: 15,
+                width: 15,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{paddingVertical: 8, flexDirection: 'row', marginLeft: -5}}>
+        <View>
+          <Text style={{fontSize: 22, fontWeight: '600', color: COLORS.white}}>
+            {' '}
+            $0
+          </Text>
+        </View>
+        <View
+          style={{
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text style={{marginTop: 10, color: COLORS.gray2}}> USD</Text>
+        </View>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: 20,
+          justifyContent: 'space-between',
+        }}>
+        <DashboardButton
+          title={'Send'}
+          source={send}
+          press={onPress}
+          show={true}
+        />
+        <DashboardButton title={'Deposit'} source={deposit} />
+        <DashboardButton title={'Withdraw'} source={withdraw} />
+        <DashboardButton title={'Buy'} source={buy} />
+      </View>
+      <View
+        style={{
+          flex: 1,
+          // backgroundColor: COLORS.gray2,
+          backgroundColor: COLORS.darkBlues,
+          borderTopLeftRadius: 26,
+          borderTopRightRadius: 26,
+          position: 'absolute',
+          top: 210,
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}>
+        <TokensTab show="NFT" />
+        <ScrollView showsVerticalScrollIndicator={false}></ScrollView>
+      </View>
+    </View>
+  );
+};
+
 export const EarnTab = () => {
-  return <View></View>;
+  return (
+    <View
+      style={{
+        // borderColor: COLORS.gray,
+        // borderWidth: 2,
+        // borderRadius: 15,
+        flex: 1,
+        paddingTop: 40,
+        padding: 25,
+        height: 170,
+        backgroundColor: COLORS.black,
+      }}></View>
+  );
+};
+
+export const CardTab = () => {
+  return (
+    <View
+      style={{
+        // borderColor: COLORS.gray,
+        // borderWidth: 2,
+        // borderRadius: 15,
+        flex: 1,
+        paddingTop: 40,
+        padding: 25,
+        height: 170,
+        backgroundColor: COLORS.black,
+      }}></View>
+  );
 };

@@ -3,6 +3,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   Text,
   TouchableOpacity,
   View,
@@ -10,11 +11,12 @@ import {
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Container from '../../components/container';
 import {COLORS, SIZES} from '../../constants/theme';
-import scan from '../../assets/images/scan.png';
+import scan from '../../assets/images/scan-2.png';
 import note from '../../assets/images/note.png';
+import dai from '../../assets/images/dai.png';
 import arrowright from '../../assets/images/arrow-right.png';
 import send from '../../assets/images/send-2.png';
-import sendthumbs from '../../assets/images/sendthumbs.png';
+import sendthumbsB from '../../assets/images/sendthumbsB.png';
 import deposit from '../../assets/images/receive.png';
 import withdraw from '../../assets/images/withdraw.png';
 import buy from '../../assets/images/buy.png';
@@ -42,19 +44,28 @@ import SendBeneficiaries from '../../components/SendBeneficiaries';
 
 const Tab = createMaterialTopTabNavigator();
 
-const Send = () => {
+const Send = ({navigation}) => {
   function renderTabs() {
     return (
       <Tab.Navigator
-        style={{backgroundColor: COLORS.white}}
+        // style={{backgroundColor: COLORS.black}}
         tabBarOptions={{
           activeTintColor: COLORS.white,
-          inactiveTintColor: COLORS.primary,
+          inactiveTintColor: COLORS.gray5,
+          tabStyle: {
+            borderWidth: 1,
+            borderColor: COLORS.gray5,
+            borderRadius: 15,
+            padding: 0,
+            // marginHorizontal: 20,
+            // alignItems: 'center',
+            // justifyContent: 'center',
+          },
           style: {
-            backgroundColor: COLORS.gray2,
+            backgroundColor: COLORS.black,
             borderRadius: 10,
             marginHorizontal: 20,
-            height: 35,
+            // height: 35,
           },
           labelStyle: {
             fontWeight: '500',
@@ -62,13 +73,14 @@ const Send = () => {
             fontStyle: 'normal',
             textTransform: 'capitalize',
             textAlign: 'center',
-            marginTop: -10,
-            letterSpacing: 1,
+            // margin: -10,
+            // marginTop: -10,
+            // letterSpacing: 1,
           },
           indicatorStyle: {
             borderBottomColor: COLORS.primary,
-            borderBottomWidth: 35,
-            borderRadius: 10,
+            borderBottomWidth: 45,
+            borderRadius: 15,
             elevation: 0,
           },
           // indicatorContainerStyle: {
@@ -78,8 +90,10 @@ const Send = () => {
           // },
         }}>
         <Tab.Screen name="Email" component={EmailTab} />
+        {/* <Tab.Screen name="Phone" component={PhoneNumberTab} /> */}
         <Tab.Screen name="Phone Number" component={PhoneNumberTab} />
         <Tab.Screen name="Pay ID" component={PaymentIDTab} />
+        {/* <Tab.Screen name="address" component={WalletAddressTab} /> */}
         <Tab.Screen name="Wallet address" component={WalletAddressTab} />
       </Tab.Navigator>
     );
@@ -92,26 +106,48 @@ const Send = () => {
         // padding: 10,
         flex: 1,
         marginTop: StatusBarHeight,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <SafeAreaView>
         <View
           style={{
             flexDirection: 'row',
-            justifycontent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
             padding: 10,
           }}>
-          <Entypo name="chevron-thin-left" size={25} color="#000" />
-          <Text style={{fontWeight: '400', fontSize: 18, marginLeft: 5}}>
+          <Entypo
+            name="chevron-thin-left"
+            size={25}
+            color={COLORS.white}
+            onPress={() => navigation.navigate('Wallet')}
+          />
+          <Text
+            style={{
+              fontWeight: '400',
+              fontSize: 18,
+              marginLeft: 5,
+              color: COLORS.white,
+            }}>
             Send
           </Text>
+          <View>
+            {/* <Text
+              style={{
+                fontWeight: '500',
+                fontSize: 15,
+                marginLeft: 5,
+                color: COLORS.lemon,
+              }}>
+              Save
+            </Text> */}
+          </View>
         </View>
       </SafeAreaView>
       <View
         style={{
           flex: 1,
-          backgroundColor: '#fff',
+          backgroundColor: COLORS.black,
           paddingTop: 8,
         }}>
         {renderTabs()}
@@ -148,7 +184,7 @@ export const EmailTab = () => {
         paddingTop: 30,
         padding: 20,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <FailureModal
         isModalVisible={error.status}
@@ -160,26 +196,50 @@ export const EmailTab = () => {
           justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
+          paddingHorizontal: 15,
           borderRadius: 8,
           height: 80,
-          backgroundColor: COLORS.gray2,
+          backgroundColor: COLORS.darkBlues,
           //
         }}>
         <View
           style={{
-            flexDirection: 'column',
-            marginLeft: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+            // marginHorizontal: 10,
           }}>
-          <Text
+          <Image source={dai} style={{height: 35, width: 35, marginRight: 5}} />
+          <View
             style={{
-              fontSize: 22,
-              fontWeight: '600',
+              flexDirection: 'column',
             }}>
-            DAI
-          </Text>
-          <Text style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-            Ethereum
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: '500',
+                  color: COLORS.white,
+                }}>
+                DAI
+              </Text>
+              <Image
+                source={arrowright}
+                style={{
+                  alignSelf: 'center',
+                  marginLeft: 5,
+                  height: 20,
+                  width: 20,
+                }}
+              />
+            </View>
+            <Text
+              style={{fontSize: 13, fontWeight: '400', color: COLORS.gray3}}>
+              Ethereum
+            </Text>
+          </View>
         </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -191,29 +251,36 @@ export const EmailTab = () => {
             }}>
             <Text
               style={{
-                fontSize: 22,
-                fontWeight: '600',
+                fontSize: 15,
+                fontWeight: '400',
+                color: COLORS.white,
+                textAlign: 'right',
               }}>
-              0.0340DAI
+              Available
             </Text>
-            <Text
-              style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-              $23,908.89
-            </Text>
-          </View>
 
-          <TouchableOpacity>
-            <Image
-              source={arrowright}
+            <View
               style={{
-                alignSelf: 'center',
-                marginLeft: 5,
-                marginRight: 10,
-                height: 30,
-                width: 30,
-              }}
-            />
-          </TouchableOpacity>
+                flexDirection: 'row',
+                alignItems: 'center',
+                // backgroundColor: 'red',
+                // flex: 1,
+              }}>
+              <Text
+                style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
+                600,000.89
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontWeight: '600',
+                  color: COLORS.white,
+                  marginTop: 2,
+                }}>
+                DAI
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
       <View style={{paddingVertical: 15}}>
@@ -245,8 +312,9 @@ export const EmailTab = () => {
                     }}>
                     <Text
                       style={{
-                        color: COLORS.textSecondary,
+                        color: COLORS.gray4,
                         fontSize: SIZES.body3,
+                        marginBottom: 5,
                       }}>
                       Paste recipient Email
                     </Text>
@@ -256,12 +324,30 @@ export const EmailTab = () => {
                     value={values.email}
                     containerStyle={{
                       marginTop: -12,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{
+                      color: COLORS.gray5,
+                      fontSize: 18,
+                    }}
                     placeholder="Tap to paste"
-                    keyboardType="email-address"
+                    keyboardType="default"
                     onBlur={() => setFieldTouched('email')}
                     onChange={handleChange('email')}
+                    // appendComponent={
+                    //   <TouchableOpacity
+                    //     style={{
+                    //       width: 40,
+                    //       alignItems: 'flex-end',
+                    //       justifyContent: 'center',
+                    //     }}
+                    //     // onPress={() => setShowPass(!showPass)}
+                    //   >
+                    //     <Image source={note} style={{width: 20, height: 20}} />
+                    //   </TouchableOpacity>
+                    // }
                   />
 
                   {errors.email && touched.email && (
@@ -271,15 +357,65 @@ export const EmailTab = () => {
                   )}
                 </>
 
+                <View
+                  style={{
+                    marginTop: 15,
+                    marginBottom: -20,
+                    flexDirection: 'column',
+                  }}>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        // alignSelf: 'flex-end',
+                        fontSize: 10,
+                        fontWeight: '400',
+                        color: COLORS.lightGreen,
+                        marginBottom: 5,
+                      }}>
+                      Recent transactions
+                    </Text>
+                  </TouchableOpacity>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                  </ScrollView>
+                </View>
+
                 <>
+                  <Text
+                    style={{
+                      color: COLORS.gray4,
+                      fontSize: SIZES.body3,
+                      marginTop: SIZES.radius * 2.5,
+                      marginBottom: 5,
+                    }}>
+                    Enter Amount
+                  </Text>
+
                   <FormInput
                     value={values.amount}
-                    label="Enter Amount"
+                    // label="Enter Amount"
                     placeholder="0.0"
                     containerStyle={{
-                      marginTop: SIZES.radius * 2.5,
+                      // marginTop: -12,
+                      // // marginTop: SIZES.radius * 2.5,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{color: COLORS.gray5, fontSize: 18}}
                     keyboardType="default"
                     onBlur={() => setFieldTouched('amount')}
                     onChange={handleChange('amount')}
@@ -292,12 +428,28 @@ export const EmailTab = () => {
                         }}>
                         <Text
                           style={{
-                            color: COLORS.black,
+                            color: COLORS.gray5,
                             fontSize: 18,
                           }}>
                           $
                         </Text>
                       </View>
+                    }
+                    appendComponent={
+                      <TouchableOpacity
+                        style={{
+                          width: 27,
+                          alignItems: 'flex-start',
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: COLORS.lemon,
+                            fontSize: 12,
+                          }}>
+                          MAX
+                        </Text>
+                      </TouchableOpacity>
                     }
                   />
 
@@ -315,7 +467,7 @@ export const EmailTab = () => {
                     alignItems: 'center',
                     marginTop: SIZES.radius,
                   }}>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       fontWeight: '500',
@@ -330,7 +482,7 @@ export const EmailTab = () => {
                       color: COLORS.primary,
                     }}>
                     Balance : 0.459 ETH
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
             </>
@@ -338,18 +490,27 @@ export const EmailTab = () => {
         </Formik>
       </View>
       <View style={{flexDirection: 'column', paddingVertical: 10}}>
-        <Text style={{fontSize: 20, marginBottom: 15, fontWeight: '500'}}>
+        <Text
+          style={{
+            fontSize: 20,
+            marginBottom: 5,
+            fontWeight: '500',
+            color: COLORS.gray4,
+          }}>
           Summary
         </Text>
         <View
           style={{
             flexDirection: 'column',
             borderRadius: 8,
-            height: 80,
-            backgroundColor: COLORS.gray2,
+            height: 90,
+            backgroundColor: COLORS.darkPurple,
             paddingTop: 13,
-            paddingBottom: 5,
+            paddingBottom: 15,
             paddingHorizontal: 20,
+            borderWidth: 1,
+            borderColor: COLORS.gray5,
+            borderStyle: 'dashed',
             //
           }}>
           <View
@@ -365,12 +526,13 @@ export const EmailTab = () => {
               style={{
                 fontSize: 15,
                 fontWeight: '400',
+                color: COLORS.white,
               }}>
               Transaction Fee
             </Text>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: '600',
                 color: COLORS.lemon,
               }}>
@@ -383,14 +545,34 @@ export const EmailTab = () => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
+              paddingBottom: 5,
             }}>
-            <Text style={{fontSize: 15, fontWeight: '400'}}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
               Total Est. Time
             </Text>
 
             <Text
-              style={{fontSize: 20, fontWeight: '600', color: COLORS.lemon}}>
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
               5 Mins
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+
+              paddingBottom: 5,
+            }}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
+              Receive amount
+            </Text>
+
+            <Text
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
+              0.00 DAI
             </Text>
           </View>
         </View>
@@ -408,9 +590,10 @@ export const EmailTab = () => {
             titleColor={COLORS.white}
             titleFontSize={16}
             width={'90%'}
-            thumbIconImageSource={sendthumbs}
+            thumbIconImageSource={sendthumbsB}
             disabledThumbIconBackgroundColor="true"
-            thumbIconBorderColor={COLORS.primary}
+            // thumbIconBorderColor={COLORS.primary}
+            disabledThumbIconBorderColor="true"
             railBackgroundColor={COLORS.primary}
             railBorderColor={COLORS.primary}
             railFillBorderColor={COLORS.primary}
@@ -450,7 +633,7 @@ export const PhoneNumberTab = () => {
         paddingTop: 30,
         padding: 20,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <FailureModal
         isModalVisible={error.status}
@@ -462,26 +645,50 @@ export const PhoneNumberTab = () => {
           justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
+          paddingHorizontal: 15,
           borderRadius: 8,
           height: 80,
-          backgroundColor: COLORS.gray2,
+          backgroundColor: COLORS.darkBlues,
           //
         }}>
         <View
           style={{
-            flexDirection: 'column',
-            marginLeft: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+            // marginHorizontal: 10,
           }}>
-          <Text
+          <Image source={dai} style={{height: 35, width: 35, marginRight: 5}} />
+          <View
             style={{
-              fontSize: 22,
-              fontWeight: '600',
+              flexDirection: 'column',
             }}>
-            DAI
-          </Text>
-          <Text style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-            Ethereum
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: '500',
+                  color: COLORS.white,
+                }}>
+                DAI
+              </Text>
+              <Image
+                source={arrowright}
+                style={{
+                  alignSelf: 'center',
+                  marginLeft: 5,
+                  height: 20,
+                  width: 20,
+                }}
+              />
+            </View>
+            <Text
+              style={{fontSize: 13, fontWeight: '400', color: COLORS.gray3}}>
+              Ethereum
+            </Text>
+          </View>
         </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -493,29 +700,36 @@ export const PhoneNumberTab = () => {
             }}>
             <Text
               style={{
-                fontSize: 22,
-                fontWeight: '600',
+                fontSize: 15,
+                fontWeight: '400',
+                color: COLORS.white,
+                textAlign: 'right',
               }}>
-              0.0340DAI
+              Available
             </Text>
-            <Text
-              style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-              $23,908.89
-            </Text>
-          </View>
 
-          <TouchableOpacity>
-            <Image
-              source={arrowright}
+            <View
               style={{
-                alignSelf: 'center',
-                marginLeft: 5,
-                marginRight: 10,
-                height: 30,
-                width: 30,
-              }}
-            />
-          </TouchableOpacity>
+                flexDirection: 'row',
+                alignItems: 'center',
+                // backgroundColor: 'red',
+                // flex: 1,
+              }}>
+              <Text
+                style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
+                600,000.89
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontWeight: '600',
+                  color: COLORS.white,
+                  marginTop: 2,
+                }}>
+                DAI
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
       <View style={{paddingVertical: 15}}>
@@ -547,8 +761,9 @@ export const PhoneNumberTab = () => {
                     }}>
                     <Text
                       style={{
-                        color: COLORS.textSecondary,
+                        color: COLORS.gray4,
                         fontSize: SIZES.body3,
+                        marginBottom: 5,
                       }}>
                       Input Phone Number
                     </Text>
@@ -558,10 +773,16 @@ export const PhoneNumberTab = () => {
                     value={values.phone_Number}
                     containerStyle={{
                       marginTop: -12,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{
+                      color: COLORS.gray5,
+                      fontSize: 18,
+                    }}
                     placeholder="Tap to paste"
-                    keyboardType="phone-pad"
+                    keyboardType="default"
                     onBlur={() => setFieldTouched('phone_Number')}
                     onChange={handleChange('phone_Number')}
                     appendComponent={
@@ -585,15 +806,65 @@ export const PhoneNumberTab = () => {
                   )}
                 </>
 
+                <View
+                  style={{
+                    marginTop: 15,
+                    marginBottom: -20,
+                    flexDirection: 'column',
+                  }}>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        // alignSelf: 'flex-end',
+                        fontSize: 10,
+                        fontWeight: '400',
+                        color: COLORS.lightGreen,
+                        marginBottom: 5,
+                      }}>
+                      Recent transactions
+                    </Text>
+                  </TouchableOpacity>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                  </ScrollView>
+                </View>
+
                 <>
+                  <Text
+                    style={{
+                      color: COLORS.gray4,
+                      fontSize: SIZES.body3,
+                      marginTop: SIZES.radius * 2.5,
+                      marginBottom: 5,
+                    }}>
+                    Enter Amount
+                  </Text>
+
                   <FormInput
                     value={values.amount}
-                    label="Enter Amount"
+                    // label="Enter Amount"
                     placeholder="0.0"
                     containerStyle={{
-                      marginTop: SIZES.radius * 2.5,
+                      // marginTop: -12,
+                      // // marginTop: SIZES.radius * 2.5,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{color: COLORS.gray5, fontSize: 18}}
                     keyboardType="default"
                     onBlur={() => setFieldTouched('amount')}
                     onChange={handleChange('amount')}
@@ -606,12 +877,28 @@ export const PhoneNumberTab = () => {
                         }}>
                         <Text
                           style={{
-                            color: COLORS.black,
+                            color: COLORS.gray5,
                             fontSize: 18,
                           }}>
                           $
                         </Text>
                       </View>
+                    }
+                    appendComponent={
+                      <TouchableOpacity
+                        style={{
+                          width: 27,
+                          alignItems: 'flex-start',
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: COLORS.lemon,
+                            fontSize: 12,
+                          }}>
+                          MAX
+                        </Text>
+                      </TouchableOpacity>
                     }
                   />
 
@@ -629,7 +916,7 @@ export const PhoneNumberTab = () => {
                     alignItems: 'center',
                     marginTop: SIZES.radius,
                   }}>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       fontWeight: '500',
@@ -644,7 +931,7 @@ export const PhoneNumberTab = () => {
                       color: COLORS.primary,
                     }}>
                     Balance : 0.459 ETH
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
             </>
@@ -652,18 +939,27 @@ export const PhoneNumberTab = () => {
         </Formik>
       </View>
       <View style={{flexDirection: 'column', paddingVertical: 10}}>
-        <Text style={{fontSize: 20, marginBottom: 15, fontWeight: '500'}}>
+        <Text
+          style={{
+            fontSize: 20,
+            marginBottom: 5,
+            fontWeight: '500',
+            color: COLORS.gray4,
+          }}>
           Summary
         </Text>
         <View
           style={{
             flexDirection: 'column',
             borderRadius: 8,
-            height: 80,
-            backgroundColor: COLORS.gray2,
+            height: 90,
+            backgroundColor: COLORS.darkPurple,
             paddingTop: 13,
-            paddingBottom: 5,
+            paddingBottom: 15,
             paddingHorizontal: 20,
+            borderWidth: 1,
+            borderColor: COLORS.gray5,
+            borderStyle: 'dashed',
             //
           }}>
           <View
@@ -679,12 +975,13 @@ export const PhoneNumberTab = () => {
               style={{
                 fontSize: 15,
                 fontWeight: '400',
+                color: COLORS.white,
               }}>
               Transaction Fee
             </Text>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: '600',
                 color: COLORS.lemon,
               }}>
@@ -697,14 +994,34 @@ export const PhoneNumberTab = () => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
+              paddingBottom: 5,
             }}>
-            <Text style={{fontSize: 15, fontWeight: '400'}}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
               Total Est. Time
             </Text>
 
             <Text
-              style={{fontSize: 20, fontWeight: '600', color: COLORS.lemon}}>
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
               5 Mins
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+
+              paddingBottom: 5,
+            }}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
+              Receive amount
+            </Text>
+
+            <Text
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
+              0.00 DAI
             </Text>
           </View>
         </View>
@@ -722,9 +1039,10 @@ export const PhoneNumberTab = () => {
             titleColor={COLORS.white}
             titleFontSize={16}
             width={'90%'}
-            thumbIconImageSource={sendthumbs}
+            thumbIconImageSource={sendthumbsB}
             disabledThumbIconBackgroundColor="true"
-            thumbIconBorderColor={COLORS.primary}
+            // thumbIconBorderColor={COLORS.primary}
+            disabledThumbIconBorderColor="true"
             railBackgroundColor={COLORS.primary}
             railBorderColor={COLORS.primary}
             railFillBorderColor={COLORS.primary}
@@ -761,10 +1079,10 @@ export const PaymentIDTab = () => {
     <View
       style={{
         flex: 1,
-        paddingTop: 25,
+        paddingTop: 30,
         padding: 20,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <FailureModal
         isModalVisible={error.status}
@@ -776,26 +1094,50 @@ export const PaymentIDTab = () => {
           justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
+          paddingHorizontal: 15,
           borderRadius: 8,
-          height: 70,
-          backgroundColor: COLORS.gray2,
+          height: 80,
+          backgroundColor: COLORS.darkBlues,
           //
         }}>
         <View
           style={{
-            flexDirection: 'column',
-            marginLeft: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+            // marginHorizontal: 10,
           }}>
-          <Text
+          <Image source={dai} style={{height: 35, width: 35, marginRight: 5}} />
+          <View
             style={{
-              fontSize: 22,
-              fontWeight: '600',
+              flexDirection: 'column',
             }}>
-            DAI
-          </Text>
-          <Text style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-            Ethereum
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: '500',
+                  color: COLORS.white,
+                }}>
+                DAI
+              </Text>
+              <Image
+                source={arrowright}
+                style={{
+                  alignSelf: 'center',
+                  marginLeft: 5,
+                  height: 20,
+                  width: 20,
+                }}
+              />
+            </View>
+            <Text
+              style={{fontSize: 13, fontWeight: '400', color: COLORS.gray3}}>
+              Ethereum
+            </Text>
+          </View>
         </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -807,32 +1149,39 @@ export const PaymentIDTab = () => {
             }}>
             <Text
               style={{
-                fontSize: 22,
-                fontWeight: '600',
+                fontSize: 15,
+                fontWeight: '400',
+                color: COLORS.white,
+                textAlign: 'right',
               }}>
-              0.0340DAI
+              Available
             </Text>
-            <Text
-              style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-              $23,908.89
-            </Text>
-          </View>
 
-          <TouchableOpacity>
-            <Image
-              source={arrowright}
+            <View
               style={{
-                alignSelf: 'center',
-                marginLeft: 5,
-                marginRight: 10,
-                height: 30,
-                width: 30,
-              }}
-            />
-          </TouchableOpacity>
+                flexDirection: 'row',
+                alignItems: 'center',
+                // backgroundColor: 'red',
+                // flex: 1,
+              }}>
+              <Text
+                style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
+                600,000.89
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontWeight: '600',
+                  color: COLORS.white,
+                  marginTop: 2,
+                }}>
+                DAI
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
-      <View style={{paddingVertical: 10}}>
+      <View style={{paddingVertical: 15}}>
         <Formik
           validateOnMount={true}
           validationSchema={sendPayIDSchema}
@@ -865,8 +1214,9 @@ export const PaymentIDTab = () => {
                     }}>
                     <Text
                       style={{
-                        color: COLORS.textSecondary,
+                        color: COLORS.gray4,
                         fontSize: SIZES.body3,
+                        marginBottom: 5,
                       }}>
                       Input app ID
                     </Text>
@@ -876,12 +1226,30 @@ export const PaymentIDTab = () => {
                     value={values.pay_ID}
                     containerStyle={{
                       marginTop: -12,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{
+                      color: COLORS.gray5,
+                      fontSize: 18,
+                    }}
                     placeholder="Tap to paste"
                     keyboardType="default"
                     onBlur={() => setFieldTouched('pay_ID')}
                     onChange={handleChange('pay_ID')}
+                    // appendComponent={
+                    //   <TouchableOpacity
+                    //     style={{
+                    //       width: 40,
+                    //       alignItems: 'flex-end',
+                    //       justifyContent: 'center',
+                    //     }}
+                    //     // onPress={() => setShowPass(!showPass)}
+                    //   >
+                    //     <Image source={scan} style={{width: 20, height: 20}} />
+                    //   </TouchableOpacity>
+                    // }
                   />
 
                   {errors.pay_ID && touched.pay_ID && (
@@ -897,6 +1265,18 @@ export const PaymentIDTab = () => {
                     marginBottom: -20,
                     flexDirection: 'column',
                   }}>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        // alignSelf: 'flex-end',
+                        fontSize: 10,
+                        fontWeight: '400',
+                        color: COLORS.lightGreen,
+                        marginBottom: 5,
+                      }}>
+                      Recent transactions
+                    </Text>
+                  </TouchableOpacity>
                   <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -913,28 +1293,31 @@ export const PaymentIDTab = () => {
                     <SendBeneficiaries />
                     <SendBeneficiaries />
                   </ScrollView>
-                  <TouchableOpacity>
-                    <Text
-                      style={{
-                        alignSelf: 'flex-end',
-                        fontSize: 10,
-                        fontWeight: '400',
-                        color: COLORS.lightGreen,
-                      }}>
-                      See all beneficiaries
-                    </Text>
-                  </TouchableOpacity>
                 </View>
 
                 <>
+                  <Text
+                    style={{
+                      color: COLORS.gray4,
+                      fontSize: SIZES.body3,
+                      marginTop: SIZES.radius * 2.5,
+                      marginBottom: 5,
+                    }}>
+                    Enter Amount
+                  </Text>
+
                   <FormInput
                     value={values.amount}
-                    label="Enter Amount"
+                    // label="Enter Amount"
                     placeholder="0.0"
                     containerStyle={{
-                      marginTop: SIZES.radius * 2.5,
+                      // marginTop: -12,
+                      // // marginTop: SIZES.radius * 2.5,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{color: COLORS.gray5, fontSize: 18}}
                     keyboardType="default"
                     onBlur={() => setFieldTouched('amount')}
                     onChange={handleChange('amount')}
@@ -947,12 +1330,28 @@ export const PaymentIDTab = () => {
                         }}>
                         <Text
                           style={{
-                            color: COLORS.black,
+                            color: COLORS.gray5,
                             fontSize: 18,
                           }}>
                           $
                         </Text>
                       </View>
+                    }
+                    appendComponent={
+                      <TouchableOpacity
+                        style={{
+                          width: 27,
+                          alignItems: 'flex-start',
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: COLORS.lemon,
+                            fontSize: 12,
+                          }}>
+                          MAX
+                        </Text>
+                      </TouchableOpacity>
                     }
                   />
 
@@ -968,9 +1367,9 @@ export const PaymentIDTab = () => {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginTop: 10,
+                    marginTop: SIZES.radius,
                   }}>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       fontWeight: '500',
@@ -985,26 +1384,35 @@ export const PaymentIDTab = () => {
                       color: COLORS.primary,
                     }}>
                     Balance : 0.459 ETH
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
             </>
           )}
         </Formik>
       </View>
-      <View style={{flexDirection: 'column', paddingVertical: 5}}>
-        <Text style={{fontSize: 20, marginBottom: 15, fontWeight: '500'}}>
+      <View style={{flexDirection: 'column', paddingVertical: 10}}>
+        <Text
+          style={{
+            fontSize: 20,
+            marginBottom: 5,
+            fontWeight: '500',
+            color: COLORS.gray4,
+          }}>
           Summary
         </Text>
         <View
           style={{
             flexDirection: 'column',
             borderRadius: 8,
-            height: 75,
-            backgroundColor: COLORS.gray2,
-            paddingTop: 10,
-            paddingBottom: 5,
+            height: 90,
+            backgroundColor: COLORS.darkPurple,
+            paddingTop: 13,
+            paddingBottom: 15,
             paddingHorizontal: 20,
+            borderWidth: 1,
+            borderColor: COLORS.gray5,
+            borderStyle: 'dashed',
             //
           }}>
           <View
@@ -1020,12 +1428,13 @@ export const PaymentIDTab = () => {
               style={{
                 fontSize: 15,
                 fontWeight: '400',
+                color: COLORS.white,
               }}>
               Transaction Fee
             </Text>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: '600',
                 color: COLORS.lemon,
               }}>
@@ -1038,14 +1447,34 @@ export const PaymentIDTab = () => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
+              paddingBottom: 5,
             }}>
-            <Text style={{fontSize: 15, fontWeight: '400'}}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
               Total Est. Time
             </Text>
 
             <Text
-              style={{fontSize: 20, fontWeight: '600', color: COLORS.lemon}}>
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
               5 Mins
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+
+              paddingBottom: 5,
+            }}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
+              Receive amount
+            </Text>
+
+            <Text
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
+              0.00 DAI
             </Text>
           </View>
         </View>
@@ -1063,9 +1492,10 @@ export const PaymentIDTab = () => {
             titleColor={COLORS.white}
             titleFontSize={16}
             width={'90%'}
-            thumbIconImageSource={sendthumbs}
+            thumbIconImageSource={sendthumbsB}
             disabledThumbIconBackgroundColor="true"
-            thumbIconBorderColor={COLORS.primary}
+            // thumbIconBorderColor={COLORS.primary}
+            disabledThumbIconBorderColor="true"
             railBackgroundColor={COLORS.primary}
             railBorderColor={COLORS.primary}
             railFillBorderColor={COLORS.primary}
@@ -1105,7 +1535,7 @@ export const WalletAddressTab = () => {
         paddingTop: 30,
         padding: 20,
         height: 170,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.black,
       }}>
       <FailureModal
         isModalVisible={error.status}
@@ -1117,26 +1547,50 @@ export const WalletAddressTab = () => {
           justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
+          paddingHorizontal: 15,
           borderRadius: 8,
           height: 80,
-          backgroundColor: COLORS.gray2,
+          backgroundColor: COLORS.darkBlues,
           //
         }}>
         <View
           style={{
-            flexDirection: 'column',
-            marginLeft: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+            // marginHorizontal: 10,
           }}>
-          <Text
+          <Image source={dai} style={{height: 35, width: 35, marginRight: 5}} />
+          <View
             style={{
-              fontSize: 22,
-              fontWeight: '600',
+              flexDirection: 'column',
             }}>
-            DAI
-          </Text>
-          <Text style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-            Ethereum
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: '500',
+                  color: COLORS.white,
+                }}>
+                DAI
+              </Text>
+              <Image
+                source={arrowright}
+                style={{
+                  alignSelf: 'center',
+                  marginLeft: 5,
+                  height: 20,
+                  width: 20,
+                }}
+              />
+            </View>
+            <Text
+              style={{fontSize: 13, fontWeight: '400', color: COLORS.gray3}}>
+              Ethereum
+            </Text>
+          </View>
         </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -1148,29 +1602,36 @@ export const WalletAddressTab = () => {
             }}>
             <Text
               style={{
-                fontSize: 22,
-                fontWeight: '600',
+                fontSize: 15,
+                fontWeight: '400',
+                color: COLORS.white,
+                textAlign: 'right',
               }}>
-              0.0340DAI
+              Available
             </Text>
-            <Text
-              style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
-              $23,908.89
-            </Text>
-          </View>
 
-          <TouchableOpacity>
-            <Image
-              source={arrowright}
+            <View
               style={{
-                alignSelf: 'center',
-                marginLeft: 5,
-                marginRight: 10,
-                height: 30,
-                width: 30,
-              }}
-            />
-          </TouchableOpacity>
+                flexDirection: 'row',
+                alignItems: 'center',
+                // backgroundColor: 'red',
+                // flex: 1,
+              }}>
+              <Text
+                style={{fontSize: 15, fontWeight: '500', color: COLORS.gray3}}>
+                600,000.89
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontWeight: '600',
+                  color: COLORS.white,
+                  marginTop: 2,
+                }}>
+                DAI
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
       <View style={{paddingVertical: 15}}>
@@ -1206,8 +1667,9 @@ export const WalletAddressTab = () => {
                     }}>
                     <Text
                       style={{
-                        color: COLORS.textSecondary,
+                        color: COLORS.gray4,
                         fontSize: SIZES.body3,
+                        marginBottom: 5,
                       }}>
                       Paste wallet address
                     </Text>
@@ -1217,8 +1679,14 @@ export const WalletAddressTab = () => {
                     value={values.wallet_Address}
                     containerStyle={{
                       marginTop: -12,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{
+                      color: COLORS.gray5,
+                      fontSize: 18,
+                    }}
                     placeholder="Tap to paste"
                     keyboardType="default"
                     onBlur={() => setFieldTouched('wallet_Address')}
@@ -1244,15 +1712,65 @@ export const WalletAddressTab = () => {
                   )}
                 </>
 
+                <View
+                  style={{
+                    marginTop: 15,
+                    marginBottom: -20,
+                    flexDirection: 'column',
+                  }}>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        // alignSelf: 'flex-end',
+                        fontSize: 10,
+                        fontWeight: '400',
+                        color: COLORS.lightGreen,
+                        marginBottom: 5,
+                      }}>
+                      Recent transactions
+                    </Text>
+                  </TouchableOpacity>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                    <SendBeneficiaries />
+                  </ScrollView>
+                </View>
+
                 <>
+                  <Text
+                    style={{
+                      color: COLORS.gray4,
+                      fontSize: SIZES.body3,
+                      marginTop: SIZES.radius * 2.5,
+                      marginBottom: 5,
+                    }}>
+                    Enter Amount
+                  </Text>
+
                   <FormInput
                     value={values.amount}
-                    label="Enter Amount"
+                    // label="Enter Amount"
                     placeholder="0.0"
                     containerStyle={{
-                      marginTop: SIZES.radius * 2.5,
+                      // marginTop: -12,
+                      // // marginTop: SIZES.radius * 2.5,
+                      borderWidth: 1,
+                      borderColor: COLORS.gray5,
+                      borderRadius: 5,
                     }}
-                    inputStyle={{color: COLORS.black, fontSize: 18}}
+                    inputStyle={{color: COLORS.gray5, fontSize: 18}}
                     keyboardType="default"
                     onBlur={() => setFieldTouched('amount')}
                     onChange={handleChange('amount')}
@@ -1265,12 +1783,28 @@ export const WalletAddressTab = () => {
                         }}>
                         <Text
                           style={{
-                            color: COLORS.black,
+                            color: COLORS.gray5,
                             fontSize: 18,
                           }}>
                           $
                         </Text>
                       </View>
+                    }
+                    appendComponent={
+                      <TouchableOpacity
+                        style={{
+                          width: 27,
+                          alignItems: 'flex-start',
+                          justifyContent: 'center',
+                        }}>
+                        <Text
+                          style={{
+                            color: COLORS.lemon,
+                            fontSize: 12,
+                          }}>
+                          MAX
+                        </Text>
+                      </TouchableOpacity>
                     }
                   />
 
@@ -1288,7 +1822,7 @@ export const WalletAddressTab = () => {
                     alignItems: 'center',
                     marginTop: SIZES.radius,
                   }}>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       fontWeight: '500',
@@ -1303,7 +1837,7 @@ export const WalletAddressTab = () => {
                       color: COLORS.primary,
                     }}>
                     Balance : 0.459 ETH
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
             </>
@@ -1311,18 +1845,27 @@ export const WalletAddressTab = () => {
         </Formik>
       </View>
       <View style={{flexDirection: 'column', paddingVertical: 10}}>
-        <Text style={{fontSize: 20, marginBottom: 15, fontWeight: '500'}}>
+        <Text
+          style={{
+            fontSize: 20,
+            marginBottom: 5,
+            fontWeight: '500',
+            color: COLORS.gray4,
+          }}>
           Summary
         </Text>
         <View
           style={{
             flexDirection: 'column',
             borderRadius: 8,
-            height: 80,
-            backgroundColor: COLORS.gray2,
+            height: 90,
+            backgroundColor: COLORS.darkPurple,
             paddingTop: 13,
-            paddingBottom: 5,
+            paddingBottom: 15,
             paddingHorizontal: 20,
+            borderWidth: 1,
+            borderColor: COLORS.gray5,
+            borderStyle: 'dashed',
             //
           }}>
           <View
@@ -1338,12 +1881,13 @@ export const WalletAddressTab = () => {
               style={{
                 fontSize: 15,
                 fontWeight: '400',
+                color: COLORS.white,
               }}>
               Transaction Fee
             </Text>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: '600',
                 color: COLORS.lemon,
               }}>
@@ -1356,14 +1900,34 @@ export const WalletAddressTab = () => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
+              paddingBottom: 5,
             }}>
-            <Text style={{fontSize: 15, fontWeight: '400'}}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
               Total Est. Time
             </Text>
 
             <Text
-              style={{fontSize: 20, fontWeight: '600', color: COLORS.lemon}}>
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
               5 Mins
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+
+              paddingBottom: 5,
+            }}>
+            <Text
+              style={{fontSize: 15, fontWeight: '400', color: COLORS.white}}>
+              Receive amount
+            </Text>
+
+            <Text
+              style={{fontSize: 15, fontWeight: '600', color: COLORS.lemon}}>
+              0.00 DAI
             </Text>
           </View>
         </View>
@@ -1381,9 +1945,10 @@ export const WalletAddressTab = () => {
             titleColor={COLORS.white}
             titleFontSize={16}
             width={'90%'}
-            thumbIconImageSource={sendthumbs}
+            thumbIconImageSource={sendthumbsB}
             disabledThumbIconBackgroundColor="true"
-            thumbIconBorderColor={COLORS.primary}
+            // thumbIconBorderColor={COLORS.primary}
+            disabledThumbIconBorderColor="true"
             railBackgroundColor={COLORS.primary}
             railBorderColor={COLORS.primary}
             railFillBorderColor={COLORS.primary}

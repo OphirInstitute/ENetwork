@@ -34,9 +34,18 @@ const TokensRow = ({
           }}>
           <Image source={img} style={{marginRight: 5, height: 45, width: 45}} />
           <View style={{flexDirection: 'column', marginLeft: 5}}>
-            <Text style={{fontWeight: '500', fontSize: 16}}>{coin}</Text>
+            <Text
+              style={{fontWeight: '500', fontSize: 16, color: COLORS.white}}>
+              {coin}
+            </Text>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{fontWeight: '500', fontSize: 13, marginRight: 10}}>
+              <Text
+                style={{
+                  fontWeight: '500',
+                  fontSize: 13,
+                  marginRight: 10,
+                  color: COLORS.gray4,
+                }}>
                 ${leftbottom}
               </Text>
               <Text style={{color: loss ? 'red' : 'green'}}>
@@ -52,7 +61,11 @@ const TokensRow = ({
               alignItems: 'flex-end',
               marginRight: 3,
             }}>
-            <Text style={{fontWeight: '600', fontSize: 15}}> 340</Text>
+            <Text
+              style={{fontWeight: '600', fontSize: 15, color: COLORS.white}}>
+              {' '}
+              340
+            </Text>
             <Text style={{color: COLORS.gray3}}>${rightbottom}</Text>
           </View>
           <View
