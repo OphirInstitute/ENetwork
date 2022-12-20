@@ -43,10 +43,12 @@ import {
   sendWalletAddSchema,
 } from '../../util/schema';
 import SendBeneficiaries from '../../components/SendBeneficiaries';
+import CurrencySearch from '../../components/CurrencySearch';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 const Tab = createMaterialTopTabNavigator();
 
-const SecretPhrase = ({navigation}) => {
+const SelectCurrencies = ({navigation}) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [loginWithEmail, setLoginWithEmail] = React.useState(true);
   const [loginWithPhone, setLoginWithPhone] = React.useState(0);
@@ -60,22 +62,6 @@ const SecretPhrase = ({navigation}) => {
 
   const handleLogin = () => {
     console.warn('PRESS');
-  };
-
-  const copyToClipboard = text => {
-    Clipboard.setString(text);
-    toastRef.show('Copied to clipboard', {
-      duration: 2000,
-      position: 'top',
-      type: 'success',
-      placement: 'bottom',
-      // offset: { x: 600, y: 500 },
-      animationDuration: 500,
-      animation: {
-        fade: true,
-        type: 'fade',
-      },
-    });
   };
 
   const closeFailureModal = () => {
@@ -95,7 +81,7 @@ const SecretPhrase = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            // justifyContent: 'space-between',
             alignItems: 'center',
             padding: 10,
           }}>
@@ -105,16 +91,16 @@ const SecretPhrase = ({navigation}) => {
             color={COLORS.white}
             onPress={() => navigation.navigate('Wallet')}
           />
-          {/* <Text
+          <Text
             style={{
-              fontWeight: '400',
+              fontWeight: '500',
               fontSize: 18,
               marginLeft: 5,
               color: COLORS.white,
             }}>
-            Send
+            Select currencies
           </Text>
-          <View>
+          {/* <View>
             <Text
               style={{
                 fontWeight: '500',
@@ -139,7 +125,7 @@ const SecretPhrase = ({navigation}) => {
             // paddingTop: 30,
             paddingVertical: 10,
             paddingHorizontal: 20,
-            height: 170,
+            // height: 170,
             backgroundColor: COLORS.black,
           }}>
           <FailureModal
@@ -147,95 +133,48 @@ const SecretPhrase = ({navigation}) => {
             closeModal={closeFailureModal}
             message={error.message}
           />
-          <Text
-            style={{
-              fontSize: 18,
+
+          <CurrencySearch
+            inputStyle={{
+              // paddingLeft: SIZES.padding,
+              paddingRight: 20,
+              flexShrink: 1,
+              flexWrap: 'wrap',
+              fontSize: 16,
               fontWeight: '500',
-              color: COLORS.white,
-              marginBottom: 10,
-            }}>
-            Your secret phrase
-          </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: '400',
-              color: COLORS.gray6,
-              marginBottom: 10,
-              lineHeight: 20,
-            }}>
-            Write down these words in the right order and save them somewhere
-            safe
-          </Text>
+              color: COLORS.gray2,
+            }}
+          />
 
-          <View
+          <ScrollView
             style={{
-              // justifyContent: 'space-between',
-              flexDirection: 'column',
-              flex: 0.4,
-              // alignItems: 'center',
-              paddingHorizontal: 20,
-              paddingVertical: 15,
-              borderRadius: 8,
-              backgroundColor: COLORS.darkBlues,
-              //
+              paddingTop: 30,
             }}>
-            <BoxText />
-            <BoxText />
-            <BoxText />
-          </View>
-
-          <TouchableOpacity
-            onPress={copyToClipboard('text copied')}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingVertical: 15,
-              paddingHorizontal: 20,
-              width: 112,
-              borderRadius: 8,
-              backgroundColor: COLORS.darkBlues,
-              marginTop: 20,
-              //
-            }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: '400',
-                color: COLORS.white,
-              }}>
-              Copy
-            </Text>
-            <Image
-              source={copy}
-              style={{
-                // alignSelf: 'center',
-                marginLeft: 5,
-                height: 22,
-                width: 22,
-              }}
-            />
-          </TouchableOpacity>
-
-          <View
-            style={{
-              // paddingBottom: 30,
-              marginBottom: 10,
-              marginTop: 60,
-              paddingHorizontal: 30,
-            }}>
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: '400',
-                color: COLORS.red,
-                lineHeight: 20,
-                textAlign: 'center',
-              }}>
-              understand that you stand the risk of loosing your account if you
-              expose your secret phase to others!!!
-            </Text>
-          </View>
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+            <Currencies icon={eth} />
+            <Currencies icon={logo} />
+            <Currencies icon={bnb} />
+            <Currencies icon={bitcoin} />
+          </ScrollView>
 
           <TouchableOpacity
             style={{
@@ -255,7 +194,7 @@ const SecretPhrase = ({navigation}) => {
                 // marginTop: 60,
                 // paddingHorizontal: 30,
               }}>
-              Continue
+              Done
             </Text>
             <Image source={continueB} />
           </TouchableOpacity>
@@ -265,30 +204,53 @@ const SecretPhrase = ({navigation}) => {
   );
 };
 
-export default SecretPhrase;
+export default SelectCurrencies;
 
-export const BoxText = () => {
+export const Currencies = ({icon}) => {
+  const [show, setShow] = React.useState(false);
   return (
     <View
       style={{
         flexDirection: 'row',
-        flex: 1,
-        alignItems: 'center',
         justifyContent: 'space-between',
+        alignItems: 'center',
         paddingVertical: 10,
+        paddingLeft: 10,
+        paddingRight: 20,
       }}>
-      <Text style={{color: COLORS.white, fontSize: 15, fontWeight: '400'}}>
-        1. Safe
-      </Text>
-      <Text style={{color: COLORS.white, fontSize: 15, fontWeight: '400'}}>
-        1. Safe
-      </Text>
-      <Text style={{color: COLORS.white, fontSize: 15, fontWeight: '400'}}>
-        1. Safe
-      </Text>
-      <Text style={{color: COLORS.white, fontSize: 15, fontWeight: '400'}}>
-        1. Safe
-      </Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
+        <Image source={icon} style={{height: 35, width: 35}} />
+        <View
+          style={{
+            flexDirection: 'column',
+            paddingLeft: 10,
+          }}>
+          <Text style={{color: COLORS.white, fontSize: 15, fontWeight: '500'}}>
+            DAI
+          </Text>
+          <Text style={{color: COLORS.gray4, fontSize: 13, fontWeight: '400'}}>
+            Ethereum
+          </Text>
+        </View>
+      </View>
+      <ToggleSwitch
+        isOn={show}
+        onColor={COLORS.lemon}
+        offColor={COLORS.gray}
+        // label={hideBalance ? 'Show Balance' : 'Hide Balance'}
+        // labelStyle={{
+        //   color: COLORS.baseColor,
+        //   fontWeight: 'bold',
+        //   fontSize: SIZES.body5,
+        // }}
+        size="small"
+        // onToggle={isOn => dispatch(saveHideBalance(isOn))}
+        onToggle={isOn => setShow(isOn)}
+      />
     </View>
   );
 };
