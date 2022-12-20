@@ -9,15 +9,15 @@ import {
   View,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Container from '../../components/container';
 import {COLORS, SIZES} from '../../constants/theme';
-import scan from '../../assets/images/scan-2.png';
-import note from '../../assets/images/note.png';
 import dai from '../../assets/images/dai.png';
+import continueB from '../../assets/images/continueB.png';
+import Container from '../../components/container';
+import note from '../../assets/images/note.png';
+import scan from '../../assets/images/scan-2.png';
 import arrowright from '../../assets/images/arrow-right.png';
 import copy from '../../assets/images/copy.png';
 import sendthumbsB from '../../assets/images/sendthumbsB.png';
-import continueB from '../../assets/images/continueB.png';
 import withdraw from '../../assets/images/withdraw.png';
 import buy from '../../assets/images/buy.png';
 import DashboardButton from '../../components/DashboardButton';
@@ -26,14 +26,16 @@ import eth from '../../assets/images/eth.png';
 import logo from '../../assets/images/logo.png';
 import bnb from '../../assets/images/bnb.png';
 import bitcoin from '../../assets/images/bitcoin.png';
+import FailureModal from '../../components/FailureModal';
+import Entypo from 'react-native-vector-icons/Entypo';
+import {useToast} from 'react-native-toast-notifications';
+import ToggleSwitch from 'toggle-switch-react-native';
+import CurrencySearch from '../../components/CurrencySearch';
 import TokensTab from '../../components/TokensTab';
 import TokensRow from '../../components/TokensRow';
-import FailureModal from '../../components/FailureModal';
 import FormInput from '../../components/FormInput';
 import {Formik} from 'formik';
 import SwipeButton from 'rn-swipe-button';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {useToast} from 'react-native-toast-notifications';
 import Clipboard from '@react-native-clipboard/clipboard';
 import TextButton from '../../components/TextButton';
 import {
@@ -43,8 +45,6 @@ import {
   sendWalletAddSchema,
 } from '../../util/schema';
 import SendBeneficiaries from '../../components/SendBeneficiaries';
-import CurrencySearch from '../../components/CurrencySearch';
-import ToggleSwitch from 'toggle-switch-react-native';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -154,26 +154,32 @@ const SelectCurrencies = ({navigation}) => {
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
             <Currencies icon={eth} />
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
             <Currencies icon={eth} />
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
             <Currencies icon={eth} />
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
             <Currencies icon={eth} />
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
             <Currencies icon={eth} />
             <Currencies icon={logo} />
             <Currencies icon={bnb} />
             <Currencies icon={bitcoin} />
+            <Currencies icon={dai} />
           </ScrollView>
 
           <TouchableOpacity
