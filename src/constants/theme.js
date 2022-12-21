@@ -38,11 +38,18 @@ export const COLORS = {
   gray: '#D8D8D8',
   gray2: '#F0F0F0',
   gray3: '#808080',
+  gray4: '#50555C', //text
+  gray5: '#292D32',
+  gray6: '#ABABAB',
   black: '#000',
   red: 'red',
   darkBlue: 'rgba(0, 9, 44,0.7)',
   darkBlue1: 'rgba(0, 9, 44,0.9)',
+  darkBlues: '#171925', //text box background
+  darkBlues2: 'rgba(255, 255, 255, 0.04)', //box tape
+  darkPurple: '#100B16', //text box background 2
   baseColor: '#83A4D7',
   baseColor1: '#1E324E',
   textPlaceholder: '#B0BCDA',
+  textPlaceholder2: '#50555C',
 };

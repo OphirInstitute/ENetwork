@@ -1,6 +1,7 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import passport from '../assets/images/passport.png';
+import {COLORS} from '../constants/theme';
 
 const SendBeneficiaries = () => {
   return (
@@ -10,7 +11,7 @@ const SendBeneficiaries = () => {
         marginRight: 10,
         // flex: 1,
         // justifyContent: 'flex-start',
-        // alignItems: 'center',
+        alignItems: 'center',
       }}>
       <Image
         source={passport}
@@ -22,7 +23,15 @@ const SendBeneficiaries = () => {
         }}
       />
 
-      <Text style={{marginTop: 5}}>Micheal</Text>
+      <Text
+        style={{
+          marginTop: 5,
+          color: COLORS.white,
+          fontSize: 10,
+          fontWeight: '400',
+        }}>
+        Micheal
+      </Text>
     </View>
   );
 };
