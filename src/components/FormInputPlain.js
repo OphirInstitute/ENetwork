@@ -4,7 +4,7 @@ import {Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const FormInput = ({
+const FormInputPlain = ({
   editable,
   containerStyle,
   label,
@@ -35,6 +35,9 @@ const FormInput = ({
     <View
       style={{
         ...containerStyle,
+
+        // borderBottomWidth: 2, //TODO
+        // borderBottomColor: COLORS.gray3, //TODO
       }}>
       {label && (
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -61,9 +64,12 @@ const FormInput = ({
           flexDirection: 'row',
           height: customInputHeight ? customInputHeight : 50,
           paddingHorizontal: SIZES.padding / 1.3,
-          borderRadius: 8,
           // marginTop: SIZES.base,
-          // backgroundColor: COLORS.darkBlues,
+          // marginTop: 3,
+          // borderRadius: 8, //TODO
+          // backgroundColor: COLORS.gray2,
+          // borderColor: COLORS.red,
+          // borderWidth: 2,
           // paddingVertical: SIZES.padding,
         }}>
         {prependComponent}
@@ -74,12 +80,15 @@ const FormInput = ({
           multiline={multiline ? multiline : false}
           style={{
             flex: 1,
+            color: COLORS.baseColor,
             ...inputStyle,
             alignContent: 'center',
+            borderBottomWidth: 1, //TODO
+            borderBottomColor: COLORS.darkBlues2, //TODO
           }}
           placeholder={placeholder}
           value={value}
-          placeholderTextColor={COLORS.gray5}
+          placeholderTextColor={COLORS.textPlaceholder2}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
@@ -97,4 +106,4 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default FormInputPlain;
