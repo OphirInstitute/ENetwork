@@ -11,18 +11,21 @@ import send from '../assets/images/send-2.png';
 import deposit from '../assets/images/receive.png';
 import swap from '../assets/images/swap.png';
 import add from '../assets/images/add-square.png';
+import recipt from '../assets/images/receiptEdit.png';
 import Beneficiaries from './Beneficiaries';
+import {useTheme} from '@react-navigation/native';
 
 const Balance = () => {
+  const {colors} = useTheme();
   return (
     <View
       style={{
         // flex: 1,
-        borderColor: COLORS.gray,
+        borderColor: colors.notification,
         borderWidth: 2,
         borderRadius: 15,
         padding: 15,
-        height: 170,
+        height: 180,
       }}>
       <View
         style={{
@@ -37,7 +40,7 @@ const Balance = () => {
             alignItems: 'center',
             // flex: 1,
           }}>
-          <Text style={{fontSize: 20}}>BALANCE</Text>
+          <Text style={{fontSize: 18, color: colors.text}}>BALANCE</Text>
           <TouchableOpacity>
             <Image
               source={eye}
@@ -46,6 +49,7 @@ const Balance = () => {
                 marginLeft: 10,
                 height: 15,
                 width: 15,
+                tintColor: colors.text,
               }}
             />
           </TouchableOpacity>
@@ -56,26 +60,47 @@ const Balance = () => {
             justifyContent: 'space-between',
             // backgroundColor: 'red',
           }}>
-          <View style={{alignItems: 'center', marginHorizontal: 10}}>
-            <Image source={patner} />
-            <Text>Patners</Text>
-          </View>
-          <View style={{alignItems: 'center', marginHorizontal: 10}}>
-            <Image source={scan} />
-            <Text>Scan</Text>
-          </View>
+          <TouchableOpacity>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                source={recipt}
+                style={{tintColor: colors.notification, height: 30, width: 35}}
+              />
+              <Text style={{color: colors.text}}>Request</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={{alignItems: 'center', marginHorizontal: 8}}>
+              <Image
+                source={patner}
+                style={{tintColor: colors.notification, height: 30, width: 35}}
+              />
+              <Text style={{color: colors.text}}>Patners</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                source={scan}
+                style={{tintColor: colors.notification, height: 30, width: 35}}
+              />
+              <Text style={{color: colors.text}}>Scan|Pay</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={{paddingVertical: 8, flexDirection: 'row'}}>
         <View>
-          <Text style={{fontSize: 22, fontWeight: '600'}}> $9,438,600.00</Text>
+          <Text style={{fontSize: 20, fontWeight: '600', color: colors.text}}>
+            $9,438,600.00
+          </Text>
         </View>
         <View
           style={{
             alignContent: 'center',
             justifyContent: 'center',
           }}>
-          <Text style={{marginTop: 10}}> USD</Text>
+          <Text style={{marginTop: 10, color: colors.notification}}> USD</Text>
         </View>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>

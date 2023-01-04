@@ -5,8 +5,10 @@ import arrow from '../assets/images/arrow.png';
 import graph from '../assets/images/graph.png';
 import arrowDown from '../assets/images/arrow-down.png';
 import greenGraph from '../assets/images/greenGraph.png';
+import {useTheme} from '@react-navigation/native';
 
 const CryptoRow = ({loss, coin, img, perecentage}) => {
+  const {colors} = useTheme();
   return (
     <TouchableOpacity>
       <View
@@ -22,7 +24,7 @@ const CryptoRow = ({loss, coin, img, perecentage}) => {
             alignItems: 'center',
           }}>
           <Image source={img} style={{marginRight: 5}} />
-          <Text style={{fontWeight: '600'}}>{coin}</Text>
+          <Text style={{fontWeight: '600', color: colors.text}}>{coin}</Text>
         </View>
         <View>
           <Image source={loss ? graph : greenGraph} />

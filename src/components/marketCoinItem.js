@@ -4,6 +4,7 @@ import bitcoin from '../assets/images/bitcoin.png';
 import {COLORS} from '../constants/theme';
 import greenGraph from '../assets/images/greenGraph.png';
 import redGraph from '../assets/images/redGraph.png';
+import {useTheme} from '@react-navigation/native';
 
 const MarketCoinItem = ({
   loss,
@@ -15,6 +16,7 @@ const MarketCoinItem = ({
   price,
   percentage,
 }) => {
+  const {colors} = useTheme();
   return (
     <TouchableOpacity>
       <View
@@ -28,11 +30,11 @@ const MarketCoinItem = ({
             <Image source={source} style={{height: 50, width: 50}} />
           </View>
           <View style={{padding: 5}}>
-            <Text style={{fontSize: 20}}>{coinName} </Text>
+            <Text style={{fontSize: 20, color: colors.text}}>{coinName} </Text>
             <View style={{flexDirection: 'row'}}>
               <View
                 style={{
-                  backgroundColor: COLORS.black,
+                  backgroundColor: colors.notification,
 
                   borderRadius: 10,
                   paddingHorizontal: 10,
@@ -40,22 +42,26 @@ const MarketCoinItem = ({
                 }}>
                 <Text
                   style={{
-                    color: COLORS.white,
+                    color: colors.text,
                     textAlign: 'center',
                   }}>
                   {position}
                 </Text>
               </View>
-              <Text style={{padding: 5}}>{initial}</Text>
+              <Text style={{padding: 5, color: colors.notification}}>
+                {initial}
+              </Text>
             </View>
-            <Text style={{fontWeight: '600', fontSize: 12}}>Vol ${vol} </Text>
+            <Text style={{fontWeight: '600', fontSize: 12, color: colors.text}}>
+              Vol ${vol}{' '}
+            </Text>
           </View>
         </View>
         <View>
           <Image source={loss ? redGraph : greenGraph} />
         </View>
         <View>
-          <Text>${price}</Text>
+          <Text style={{color: colors.text}}>${price}</Text>
         </View>
         <View
           style={{
@@ -63,7 +69,7 @@ const MarketCoinItem = ({
             padding: 5,
             borderRadius: 5,
           }}>
-          <Text style={{color: COLORS.white}}> {percentage}</Text>
+          <Text style={{color: colors.text}}> {percentage}</Text>
         </View>
       </View>
     </TouchableOpacity>

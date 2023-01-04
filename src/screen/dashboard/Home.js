@@ -19,7 +19,10 @@ import eth from '../../assets/images/eth.png';
 import xrp from '../../assets/images/xrp.png';
 import bnb from '../../assets/images/bnb.png';
 
+import {useTheme} from '@react-navigation/native';
+
 const Home = () => {
+  const {colors} = useTheme();
   const [imageUris, setImageUris] = useState([]);
   const [activeTab, setActiveTab] = useState('Trending');
 
@@ -57,11 +60,13 @@ const Home = () => {
                 justifyContent: 'center',
                 height: 50,
                 width: 50,
+                shadowColor: colors.notification,
               }}
             />
           </View>
           <View style={{alignSelf: 'center', marginLeft: 5}}>
-            <Text>Micheal</Text>
+            <Text style={{color: colors.text}}>Hello</Text>
+            <Text style={{color: colors.text}}>Micheal</Text>
           </View>
         </View>
         <View
@@ -71,7 +76,7 @@ const Home = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={logo} />
+          <Image source={logo} style={{height: 50, width: 50}} />
         </View>
         <View
           style={{
@@ -80,16 +85,18 @@ const Home = () => {
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
-          <Image source={search} />
-          <Image source={notification} />
-          <Image source={setting} />
+          <Image source={search} style={{tintColor: colors.border}} />
+          <Image source={notification} style={{tintColor: colors.border}} />
+          <Image source={setting} style={{tintColor: colors.border}} />
         </View>
       </SafeAreaView>
       <Slider />
       <Balance />
       <View>
         <View style={{marginTop: 5}}>
-          <Text style={{fontWeight: '600'}}>Beneficiaries</Text>
+          <Text style={{fontWeight: '600', color: colors.text}}>
+            Beneficiaries
+          </Text>
         </View>
         <ImageList
           imageUris={imageUris}
@@ -99,7 +106,7 @@ const Home = () => {
       </View>
       <View
         style={{
-          backgroundColor: COLORS.gray2,
+          backgroundColor: colors.background,
           paddingVertical: 10,
           flexDirection: 'row',
         }}>

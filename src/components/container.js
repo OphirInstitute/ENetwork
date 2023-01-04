@@ -1,19 +1,23 @@
 import React from 'react';
-import {View, Platform} from 'react-native';
+import {View, Platform, StatusBar} from 'react-native';
 import {COLORS} from '../constants/theme';
 import {StatusBarHeight} from './statusBar';
 
 const Container = ({children}) => {
   return (
-    <View
-      style={{
-        padding: 15,
-        flex: 1,
-        marginTop: StatusBarHeight,
-        // backgroundColor: COLORS.black,
-      }}>
-      {children}
-    </View>
+    <>
+      <StatusBar backgroundColor={COLORS.dark} />
+
+      <View
+        style={{
+          padding: 15,
+          flex: 1,
+          marginTop: StatusBarHeight,
+          // backgroundColor: COLORS.dark,
+        }}>
+        {children}
+      </View>
+    </>
   );
 };
 

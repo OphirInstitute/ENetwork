@@ -11,8 +11,11 @@ import passport from '../assets/images/passport.png';
 import addIcon from '../assets/images/add.png';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {add} from 'react-native-reanimated';
+import {useTheme} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Beneficiaries = ({source, onChangeImage}) => {
+  const {colors} = useTheme();
   const handleChangePhoto = () => {
     launchImageLibrary({noData: true}, response => {
       const img = response.assets[0].uri;
@@ -36,7 +39,7 @@ const Beneficiaries = ({source, onChangeImage}) => {
     <TouchableOpacity onPress={handlePress}>
       <View
         style={{
-          backgroundColor: '#000',
+          backgroundColor: colors.primary,
           borderRadius: 50,
           marginRight: 5,
           marginVertical: 10,

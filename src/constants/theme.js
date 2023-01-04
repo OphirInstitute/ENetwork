@@ -53,4 +53,6 @@ export const COLORS = {
   baseColor1: '#1E324E',
   textPlaceholder: '#B0BCDA',
   textPlaceholder2: '#50555C',
+  dark: '#252525',
+  dark2: '#171925',
 };

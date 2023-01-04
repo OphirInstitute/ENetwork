@@ -8,6 +8,7 @@ import bitcoin from '../assets/images/bitcoin.png';
 import eth from '../assets/images/eth.png';
 import bnb from '../assets/images/bnb.png';
 import arrowDown from '../assets/images/arrow-down.png';
+import {useTheme} from '@react-navigation/native';
 
 export default function CustomSearch({
   placeholder,
@@ -21,6 +22,8 @@ export default function CustomSearch({
   const handleShowSearch = prev => {
     setShowSearch(!prev);
   };
+
+  const {colors} = useTheme();
   return (
     <View
       style={{
@@ -28,6 +31,7 @@ export default function CustomSearch({
         // backgroundColor: 'red',
         flexDirection: 'row',
         // justifyContent: 'space-between',
+        // backgroundColor: colors.notification,
       }}>
       <View style={{justifyContent: 'center'}}>
         <Image source={fire} style={{height: 30, width: 30}} />
@@ -44,6 +48,7 @@ export default function CustomSearch({
             borderRadius: 40,
             flex: 1,
             // ...style,
+            backgroundColor: colors.notification,
           }}>
           <TextInput
             style={{
@@ -61,7 +66,7 @@ export default function CustomSearch({
       ) : (
         <View
           style={{
-            backgroundColor: COLORS.black,
+            backgroundColor: colors.notification,
             height: 45,
             width: width || 'auto',
             marginHorizontal: 7,
@@ -80,6 +85,7 @@ export default function CustomSearch({
               marginLeft: 8,
             }}>
             <Text style={{color: COLORS.gray}}>#</Text>
+            <Text style={{color: COLORS.gray}}>1</Text>
             <Image source={arrow} />
             <Text style={{color: COLORS.white}}>BTC</Text>
             <Image source={bitcoin} style={{height: 25, width: 25}} />
@@ -91,6 +97,7 @@ export default function CustomSearch({
               flexDirection: 'row',
             }}>
             <Text style={{color: COLORS.gray}}>#</Text>
+            <Text style={{color: COLORS.gray}}>2</Text>
             <Image source={arrow} />
             <Text style={{color: COLORS.white}}>ETH</Text>
             <Image source={eth} style={{height: 20, width: 20}} />
@@ -103,6 +110,7 @@ export default function CustomSearch({
               marginRight: 8,
             }}>
             <Text style={{color: COLORS.gray}}>#</Text>
+            <Text style={{color: COLORS.gray}}>3</Text>
             <Image source={arrowDown} />
             <Text style={{color: COLORS.white}}>BNB</Text>
             <Image source={bnb} style={{height: 20, width: 20}} />
@@ -112,7 +120,10 @@ export default function CustomSearch({
 
       <View style={{justifyContent: 'center'}}>
         <TouchableOpacity onPress={() => handleShowSearch(showSearch)}>
-          <Image source={search} style={{height: 25, width: 25}} />
+          <Image
+            source={search}
+            style={{height: 25, width: 25, tintColor: colors.text}}
+          />
         </TouchableOpacity>
       </View>
     </View>

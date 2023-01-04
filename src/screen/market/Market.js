@@ -12,14 +12,18 @@ import teter from '../../assets/images/teter.png';
 import binance from '../../assets/images/binance.png';
 import MarketTab from '../../components/MarketTab';
 import MarketCoinItem from '../../components/marketCoinItem';
+import {useTheme} from '@react-navigation/native';
 
 const Market = () => {
+  const {colors} = useTheme();
   return (
     <Container>
       <SafeAreaView>
         <View
           style={{justifycontent: 'center', alignItems: 'center', padding: 10}}>
-          <Text style={{fontWeight: '600'}}>Crypto Assets</Text>
+          <Text style={{fontWeight: '600', color: colors.text, fontSize: 28}}>
+            Market
+          </Text>
         </View>
       </SafeAreaView>
       <View style={{flex: 1}}>

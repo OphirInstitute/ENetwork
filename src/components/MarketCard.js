@@ -4,13 +4,15 @@ import {COLORS} from '../constants/theme';
 import bitcoin from '../assets/images/bitcoin.png';
 import greenGraph from '../assets/images/greenGraph2.png';
 import redGraph from '../assets/images/redGraph.png';
+import {useTheme} from '@react-navigation/native';
 
 const MarketCard = ({loss, source, pair, rate, percentage}) => {
+  const {colors} = useTheme();
   const {width} = Dimensions.get('window');
   return (
     <View
       style={{
-        backgroundColor: COLORS.gray,
+        backgroundColor: '#171925',
         justifyContent: 'center',
         // alignItems: 'center',
         padding: 10,
@@ -24,12 +26,16 @@ const MarketCard = ({loss, source, pair, rate, percentage}) => {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <Image source={source} />
+        <Image source={source} style={{}} />
         <View style={{padding: 5}}>
-          <Text style={{fontWeight: '600', fontSize: 16}}>{pair}</Text>
+          <Text style={{fontWeight: '600', fontSize: 16, color: colors.text}}>
+            {pair}
+          </Text>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize: 11}}>{rate}</Text>
-            <Text style={{marginLeft: 5, fontSize: 11}}>USDT</Text>
+            <Text style={{fontSize: 11, color: colors.text}}>{rate}</Text>
+            <Text style={{marginLeft: 5, fontSize: 11, color: colors.text}}>
+              USDT
+            </Text>
           </View>
         </View>
       </View>
@@ -40,7 +46,7 @@ const MarketCard = ({loss, source, pair, rate, percentage}) => {
         />
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text>0.09844</Text>
+        <Text style={{color: colors.text}}>0.09844</Text>
         <Text style={{color: loss ? 'red' : 'green'}}>{percentage}</Text>
       </View>
     </View>

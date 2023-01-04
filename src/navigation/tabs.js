@@ -14,13 +14,25 @@ import WalletStack from './WalletStack';
 
 const Tab = createBottomTabNavigator();
 
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: '#f4511e',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
+
 const Tabs = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
+
         style: {
           // ...styles.tabStyle,
+          backgroundColor: '#000000',
         },
         keyboardHidesTabBar: true,
       }}>
@@ -46,7 +58,7 @@ const Tabs = () => {
               />
               <Text
                 style={{
-                  color: focused && COLORS.primary,
+                  color: focused ? COLORS.primary : '#898989',
                   // ...FONTS.body5,
                 }}>
                 Home
@@ -77,8 +89,7 @@ const Tabs = () => {
               />
               <Text
                 style={{
-                  color: focused && COLORS.primary,
-                  // ...FONTS.body5,
+                  color: focused ? COLORS.primary : '#898989', // ...FONTS.body5,
                 }}>
                 Market
               </Text>
@@ -108,8 +119,7 @@ const Tabs = () => {
               />
               <Text
                 style={{
-                  color: focused && COLORS.primary,
-                  // ...FONTS.body5,
+                  color: focused ? COLORS.primary : '#898989', // ...FONTS.body5,
                 }}>
                 ENET
               </Text>
@@ -139,7 +149,7 @@ const Tabs = () => {
               />
               <Text
                 style={{
-                  color: focused && COLORS.primary,
+                  color: focused ? COLORS.primary : '#898989',
                 }}>
                 Trade
               </Text>
@@ -169,8 +179,7 @@ const Tabs = () => {
               />
               <Text
                 style={{
-                  color: focused && COLORS.primary,
-                  // ...FONTS.body5,
+                  color: focused ? COLORS.primary : '#898989', // ...FONTS.body5,
                 }}>
                 Wallet
               </Text>

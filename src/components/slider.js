@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import dummy from '../constants/dummy';
 import {COLORS, SIZES} from '../constants/theme';
-import backg from '../assets/images/Rectangle.png';
+import backg from '../assets/images/blue.png';
 import {Item} from 'react-native-paper/lib/typescript/components/List/List';
 
 const Slider = () => {
@@ -92,9 +92,6 @@ const Slider = () => {
             key={key}
             style={{
               height: 160,
-              // flex: 1,
-              // backgroundColor: '#344433',
-              // width: SIZES.width / 1.1,
             }}>
             <ImageBackground
               source={backg}
@@ -105,46 +102,47 @@ const Slider = () => {
               }}
               resizeMode="contain"
               PlaceholderContent={<ActivityIndicator />}>
-              <View style={{flex: 1}}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginLeft: 20,
+                  alignItems: 'center',
+                  // backgroundColor: 'red',
+                }}>
                 <View
                   style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
+                    // backgroundColor: 'yellow',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flex: 0.3,
+                    // width: '80%',
                   }}>
-                  <View
+                  <Image
+                    source={value.image}
                     style={{
-                      // backgroundColor: 'yellow',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      flex: 0.3,
-                    }}>
-                    <Image
-                      source={value.image}
-                      style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: 100,
-                        width: 100,
-                      }}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      // backgroundColor: 'red',
-                      justifyContent: 'center',
-                      // alignItems: 'center',
-                      flex: 0.7,
-                      width: '100%',
-                    }}>
-                    <Text style={{fontSize: 24, padding: 10}}>
-                      {value.title}
-                    </Text>
-                    <Text
-                      style={{color: COLORS.white, padding: 5, fontSize: 16}}>
-                      {value.description}
-                    </Text>
-                  </View>
+                      height: 100,
+                      width: 100,
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    // backgroundColor: 'red',
+                    justifyContent: 'center',
+                    // alignItems: 'center',
+                    flex: 0.7,
+                    width: '100%',
+                  }}>
+                  <Text style={{fontSize: 20, padding: 10, color: '#01EAD4'}}>
+                    {value.title}
+                  </Text>
+                  <Text style={{color: COLORS.white, padding: 5, fontSize: 14}}>
+                    {value.description}
+                  </Text>
                 </View>
               </View>
             </ImageBackground>
